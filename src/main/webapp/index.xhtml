@@ -1,7 +1,31 @@
-<html>
-<head>
-</head>
-<body>
-	Olá mundo jsf
-</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	<body>
+		<ui:composition template="/templates/main.xhtml">
+			<ui:define name="title">Bem Vindo ao Show Tag</ui:define>
+			<ui:define name="content">
+				<h:form>
+					<h:panelGrid columns="2" border="0">
+						<p:panel header="Log In">
+							<p:panelGrid columns="2" styleClass="no-border" columnsClasses="no-border,no-border">
+								<p:outputLabel value="email" for="email"/>
+								<p:inputText id="email" label="email" value="#{credentials.username}" />
+								<p:outputLabel value="senha" for="senha"/>
+								<p:password id="senha" label="senha" value="#{credentials.password}" />
+								<h:outputText value="" />
+								<p:commandLink value="Forgot your password" />
+								<h:outputText value="" />
+								<p:commandButton value="Entrar" action="members" actionListener="#{loginController.login}" />
+								<h:outputText value="" />
+								<a href="/faces/register.xhtml">Criar Conta</a>
+							</p:panelGrid>
+						</p:panel>
+					</h:panelGrid>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</body>
 </html>
