@@ -12,13 +12,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 @NamedQueries({
-	@NamedQuery(name = User.FIND_BY_NAME, query = "select u from User u where u.username = :username and u.password = :password")
+	@NamedQuery(name = User.FIND_BY_NAME, query = "select u from User u where u.username = :username and u.password = :password"),
+	@NamedQuery(name = User.FIND_BY_USERNAME, query = "select u from User u where u.username = :username")
 })
 public class User extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 	
 	public static final String FIND_BY_NAME = "User.findByName";
+	public static final String FIND_BY_USERNAME = "User.findByUsername";
 	
 	private Integer id;
 	private String username;

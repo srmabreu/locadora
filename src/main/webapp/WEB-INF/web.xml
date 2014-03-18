@@ -4,6 +4,9 @@
 		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		version="3.0">
 		<display-name>show tag</display-name>
+		<welcome-file-list>
+		   <welcome-file>index.xhtml</welcome-file>
+		</welcome-file-list>
 		<context-param>
                 <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
                 <param-value>.xhtml</param-value>
@@ -19,6 +22,10 @@
         </servlet>
         <servlet-mapping>
                 <servlet-name>Faces Servlet</servlet-name>
-                <url-pattern>/faces/*</url-pattern>
+                <url-pattern>/showtag/*</url-pattern>
         </servlet-mapping>
+        <servlet-mapping>
+			<servlet-name>Faces Servlet</servlet-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</servlet-mapping>
 </web-app>

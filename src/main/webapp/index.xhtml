@@ -2,25 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:p="http://primefaces.org/ui">
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core">
 	<body>
 		<ui:composition template="/templates/main.xhtml">
 			<ui:define name="title">Bem Vindo ao Show Tag</ui:define>
 			<ui:define name="content">
 				<h:form>
 					<h:panelGrid columns="2" border="0">
-						<p:panel header="Log In">
+						<p:panel header="Entrar" id="loginPanel">
+							<p:messages id="messages" showDetail="true" autoUpdate="true" />
 							<p:panelGrid columns="2" styleClass="no-border" columnsClasses="no-border,no-border">
 								<p:outputLabel value="email" for="email"/>
-								<p:inputText id="email" label="email" value="#{credentials.username}" />
+								<p:inputText id="email" label="email" value="#{credentials.username}" >
+									<f:validator validatorId="emailValidator" />
+								</p:inputText>
 								<p:outputLabel value="senha" for="senha"/>
 								<p:password id="senha" label="senha" value="#{credentials.password}" />
 								<h:outputText value="" />
 								<p:commandLink value="Forgot your password" />
 								<h:outputText value="" />
-								<p:commandButton value="Entrar" action="members" actionListener="#{loginController.login}" />
-								<h:outputText value="" />
-								<a href="/faces/register.xhtml">Criar Conta</a>
+								<h:panelGroup>
+									<p:commandButton value="Entrar" action="#{loginController.login}" update="loginPanel"/>
+									<a href="./signup.xhtml">Criar Conta</a>
+								</h:panelGroup>
 							</p:panelGrid>
 						</p:panel>
 					</h:panelGrid>

@@ -21,5 +21,26 @@ public class UserServiceImpl extends AbstractService implements UserService {
 		}
 		return null;
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public User findByUsername(String username) {
+		List<User> u = em.createNamedQuery(User.FIND_BY_USERNAME).setParameter("username", username).getResultList();
+		if (!u.isEmpty()) {
+			return u.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public User saveUser(User user) {
+		User saved = user;
+		if (user.getId() == null) {
+			em.persist(user);
+		} else {
+			saved = em.merge(user);
+		}
+		return saved;
+	}
 
 }

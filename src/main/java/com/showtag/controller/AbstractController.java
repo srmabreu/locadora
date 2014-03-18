@@ -24,7 +24,8 @@ public abstract class AbstractController implements Serializable {
 	protected UserSession userSession;
 	
 	protected void addErrorMessage(String summary) {
-		FacesMessage msg = new FacesMessage(summary);
+		FacesMessage msg = new FacesMessage();
+		msg.setDetail(summary);
 		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
