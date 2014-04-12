@@ -50,6 +50,10 @@ public class LoginController extends AbstractController {
 		}
 		return outcome;
 	}
+	
+	public boolean isLoggedIn() {
+		return getLoggedInUser() != null;
+	}
 
 	public ActiveUsers getActiveUsers() {
 		return activeUsers;

@@ -16,4 +16,7 @@
 	        <redirect />
         </navigation-case>
 	</navigation-rule>
+	<lifecycle>
+		<phase-listener>com.showtag.lifecycle.SecurityPhaseListener</phase-listener>
+	</lifecycle>
 </faces-config>

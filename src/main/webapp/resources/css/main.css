@@ -22,9 +22,6 @@ div.footer {
 div.footer a {
 	margin-right:15px;
 }
-ul li {
-	margin-bottom:15px;
-}
 .input-form input.ui-inputfield {
 	width:445px;
 }
@@ -132,4 +129,13 @@ table.no-border .ui-widget-content {
 
 .ui-panelgrid td {
 	border-style:inherit !important;
+}
+
+/** modificações bootstrap **/
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
 }
