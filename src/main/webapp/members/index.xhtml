@@ -19,6 +19,17 @@
 					<p:calendar id="popupCal" value="#{userSerieController.userSerie.watchDate}" />
 					<p:watermark for="popupCal" value="Data" />
 					<p:commandButton value="Assistido" action="#{userSerieController.save}" ajax="false"/>
+					<p:dataTable var="s" value="#{userSerieController.lazyModel}" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="350" lazy="true" rows="10" rowsPerPageTemplate="50" id="serieDataTable" >
+						<p:column headerText="Série">  
+				            <h:outputText value="#{s.serie.name}" />  
+				        </p:column>
+				        <p:column headerText="Episódio">  
+				            <h:outputText value="#{s.episode}" />  
+				        </p:column>
+				        <p:column headerText="Data">  
+				            <h:outputText value="#{s.watchDate}" />  
+				        </p:column>
+					</p:dataTable>
 				</div>
 			</h:form>
 		</ui:define>

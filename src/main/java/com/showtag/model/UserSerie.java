@@ -9,13 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_serie")
+@NamedQueries({
+	@NamedQuery(name = UserSerie.FIND_SERIE_BY_USER, query = "select us from UserSerie us where us.user.id = :userId order by watchDate desc")
+})
 public class UserSerie extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_SERIE_BY_USER = "UserSerie.findSerieByUser";
 	
 	private Integer id;
 	private User user;

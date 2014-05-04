@@ -2,6 +2,7 @@ package com.showtag.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -19,6 +20,8 @@ public class UserSerieController extends AbstractController {
 	
 	private UserSerie userSerie;
 	
+	private LazyUserSerieDataModel lazyModel;
+	
 	@ManagedProperty(value = "#{serieService}")
 	private SerieService serieService;
 	
@@ -27,6 +30,11 @@ public class UserSerieController extends AbstractController {
 	
 	public UserSerieController() {
 		userSerie = new UserSerie();
+	}
+	
+	@PostConstruct
+	public void postConstruct() {
+		lazyModel = new LazyUserSerieDataModel(userSerieService, getLoggedInUser().getId());
 	}
 
 	public List<Serie> complete(String query) {
@@ -44,6 +52,14 @@ public class UserSerieController extends AbstractController {
 
 	public void setUserSerie(UserSerie userSerie) {
 		this.userSerie = userSerie;
+	}
+	
+	public LazyUserSerieDataModel getLazyModel() {
+		return lazyModel;
+	}
+
+	public void setLazyModel(LazyUserSerieDataModel lazyModel) {
+		this.lazyModel = lazyModel;
 	}
 
 	public SerieService getSerieService() {

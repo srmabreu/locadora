@@ -1,5 +1,7 @@
 package com.showtag.service.impl;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Named;
 
@@ -12,6 +14,12 @@ public class UserSerieServiceImpl extends AbstractService<UserSerie> implements 
 	
 	public void save(UserSerie obj) {
 		em.merge(obj);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UserSerie> findSerieByUser(Integer userId) {
+		return em.createNamedQuery(UserSerie.FIND_SERIE_BY_USER).setParameter("userId", userId).getResultList();
 	}
 
 }
