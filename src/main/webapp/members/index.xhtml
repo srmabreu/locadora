@@ -7,10 +7,19 @@
 <head/>
 <body>
 	<ui:composition template="/templates/main.xhtml">
-		<ui:define name="title">members</ui:define>
+		<ui:define name="title">Séries</ui:define>
 		<ui:define name="content">
 			<h:form id="serieForm">
-				<p:inputText id="teste" value="text" />
+				<div class="input-group">
+					<p:autoComplete id="serie" dropdown="true" value="#{userSerieController.userSerie.serie}" completeMethod="#{userSerieController.complete}"
+						 var="s" itemLabel="#{s.name}" itemValue="#{s}" converter="#{serieConverter}"/>
+					<p:watermark for="serie" value="Série" /> 
+					<p:inputText id="episode" value="#{userSerieController.userSerie.episode}" />
+					<p:watermark for="episode" value="Episódio. Ex: S03E02" />  
+					<p:calendar id="popupCal" value="#{userSerieController.userSerie.watchDate}" />
+					<p:watermark for="popupCal" value="Data" />
+					<p:commandButton value="Assistido" action="#{userSerieController.save}" ajax="false"/>
+				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>

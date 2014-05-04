@@ -26,7 +26,7 @@ public class SignUpController extends AbstractController {
 	
 	public String signup() {
 		if (isValidUser()) {
-			userService.saveUser(user);
+			userService.save(user);
 			return "login";
 		}
 		return null;

@@ -10,7 +10,7 @@ import com.showtag.service.UserService;
 
 @Named("userService")
 @Stateless
-public class UserServiceImpl extends AbstractService implements UserService {
+public class UserServiceImpl extends AbstractService<User> implements UserService {
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -31,15 +31,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
 		}
 		return null;
 	}
-
-	@Override
-	public User saveUser(User user) {
-		User saved = user;
-		if (user.getId() == null) {
-			em.persist(user);
-		} else {
-			saved = em.merge(user);
-		}
+	
+	public User save(User obj) {
+		User saved = em.merge(obj);
 		return saved;
 	}
 

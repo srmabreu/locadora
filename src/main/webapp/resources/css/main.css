@@ -139,3 +139,7 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+.input-group {
+	margin: 0 auto;
+}

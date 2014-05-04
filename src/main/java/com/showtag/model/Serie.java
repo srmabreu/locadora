@@ -5,13 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "serie")
+@NamedQueries({
+	@NamedQuery(name = Serie.FIND_BY_NAME, query = "select s from Serie s where upper(s.name) like upper(:serieName)"),
+	@NamedQuery(name = Serie.FIND_BY_ID, query = "select s from Serie s where s.id = :serieId")
+})
 public class Serie extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_BY_NAME = "Serie.findByName";
+	public static final String FIND_BY_ID = "Serie.findById";
 	
 	private Integer id;
 	private String name;
