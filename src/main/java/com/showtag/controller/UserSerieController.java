@@ -22,6 +22,8 @@ public class UserSerieController extends AbstractController {
 	
 	private LazyUserSerieDataModel lazyModel;
 	
+	private List<UserSerie> userSerieList;
+	
 	@ManagedProperty(value = "#{serieService}")
 	private SerieService serieService;
 	
@@ -35,6 +37,7 @@ public class UserSerieController extends AbstractController {
 	@PostConstruct
 	public void postConstruct() {
 		lazyModel = new LazyUserSerieDataModel(userSerieService, getLoggedInUser().getId());
+		userSerieList = userSerieService.findSerieByUser(getLoggedInUser().getId());
 	}
 
 	public List<Serie> complete(String query) {
@@ -76,6 +79,14 @@ public class UserSerieController extends AbstractController {
 
 	public void setUserSerieService(UserSerieService userSerieService) {
 		this.userSerieService = userSerieService;
+	}
+
+	public List<UserSerie> getUserSerieList() {
+		return userSerieList;
+	}
+
+	public void setUserSerieList(List<UserSerie> userSerieList) {
+		this.userSerieList = userSerieList;
 	}
 	
 }

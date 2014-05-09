@@ -10,7 +10,7 @@
 		<ui:define name="title">Séries</ui:define>
 		<ui:define name="content">
 			<h:form id="serieForm">
-				<div class="input-group">
+				<div class="input-group col-sm-12">
 					<p:autoComplete id="serie" dropdown="true" value="#{userSerieController.userSerie.serie}" completeMethod="#{userSerieController.complete}"
 						 var="s" itemLabel="#{s.name}" itemValue="#{s}" converter="#{serieConverter}"/>
 					<p:watermark for="serie" value="Série" /> 
@@ -19,7 +19,8 @@
 					<p:calendar id="popupCal" value="#{userSerieController.userSerie.watchDate}" />
 					<p:watermark for="popupCal" value="Data" />
 					<p:commandButton value="Assistido" action="#{userSerieController.save}" ajax="false"/>
-					<p:dataTable var="s" value="#{userSerieController.lazyModel}" scrollRows="10" scrollable="true" liveScroll="true" scrollHeight="350" lazy="true" rows="10" rowsPerPageTemplate="50" id="serieDataTable" >
+					<div class="form-group">
+					<p:dataTable var="s" value="#{userSerieController.userSerieList}" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="100%" id="seriedataTable" styleClass="table table-condensed">
 						<p:column headerText="Série">  
 				            <h:outputText value="#{s.serie.name}" />  
 				        </p:column>
@@ -30,6 +31,7 @@
 				            <h:outputText value="#{s.watchDate}" />  
 				        </p:column>
 					</p:dataTable>
+					</div>
 				</div>
 			</h:form>
 		</ui:define>
