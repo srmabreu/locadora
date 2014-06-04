@@ -14,13 +14,17 @@
 					<p:autoComplete id="serie" dropdown="true" value="#{userSerieController.userSerie.serie}" completeMethod="#{userSerieController.complete}"
 						 var="s" itemLabel="#{s.name}" itemValue="#{s}" converter="#{serieConverter}"/>
 					<p:watermark for="serie" value="Série" /> 
-					<p:inputText id="episode" value="#{userSerieController.userSerie.episode}" />
+					<p:inputText id="episode" value="#{userSerieController.userSerie.episode}" converter="toUpperCaseConverter">
+						<f:ajax event="blur" render="@this" />
+					</p:inputText>
 					<p:watermark for="episode" value="Episódio. Ex: S03E02" />  
 					<p:calendar id="popupCal" value="#{userSerieController.userSerie.watchDate}" />
 					<p:watermark for="popupCal" value="Data" />
-					<p:commandButton value="Assistido" action="#{userSerieController.save}" ajax="false"/>
-					<div class="form-group">
-					<p:dataTable var="s" value="#{userSerieController.userSerieList}" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="100%" id="seriedataTable" styleClass="table table-condensed">
+					<p:commandButton value="Assistido" action="#{userSerieController.save}" process="@all" update="@all"/>
+					<div>
+						<p:spacer height="40px"/>
+					</div>
+					<p:dataTable var="s" value="#{userSerieController.userSerieList}" scrollable="true" scrollRows="50" liveScroll="true" scrollHeight="450" id="seriedataTable">
 						<p:column headerText="Série">  
 				            <h:outputText value="#{s.serie.name}" />  
 				        </p:column>
@@ -28,13 +32,17 @@
 				            <h:outputText value="#{s.episode}" />  
 				        </p:column>
 				        <p:column headerText="Data">  
-				            <h:outputText value="#{s.watchDate}" />  
+				            <h:outputText value="#{s.watchDate}">
+				            	<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+				            </h:outputText>  
 				        </p:column>
 					</p:dataTable>
-					</div>
 				</div>
 			</h:form>
 		</ui:define>
+		<f:metadata>
+		  <f:event type="preRenderView" listener="#{userSerieController.init}"/>
+		</f:metadata>
 	</ui:composition>
 </body>
 </html>

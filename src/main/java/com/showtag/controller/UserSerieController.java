@@ -37,6 +37,9 @@ public class UserSerieController extends AbstractController {
 	@PostConstruct
 	public void postConstruct() {
 		lazyModel = new LazyUserSerieDataModel(userSerieService, getLoggedInUser().getId());
+	}
+	
+	public void init() {
 		userSerieList = userSerieService.findSerieByUser(getLoggedInUser().getId());
 	}
 
@@ -47,6 +50,7 @@ public class UserSerieController extends AbstractController {
 	public void save() {
 		userSerie.setUser(getLoggedInUser());
 		userSerieService.save(userSerie);
+		setUserSerie(new UserSerie());
 	}
 	
 	public UserSerie getUserSerie() {
