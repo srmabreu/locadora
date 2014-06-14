@@ -30,6 +30,13 @@ public abstract class AbstractController implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 	
+	protected void addInfoMessage(String summary) {
+		FacesMessage msg = new FacesMessage();
+		msg.setDetail(summary);
+		msg.setSeverity(FacesMessage.SEVERITY_INFO);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
 	protected User getLoggedInUser() {
 		if (userSession != null ) {
 			return userSession.getUser();

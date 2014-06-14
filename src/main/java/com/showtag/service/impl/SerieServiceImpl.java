@@ -32,4 +32,10 @@ public class SerieServiceImpl extends AbstractService<Serie> implements SerieSer
 		return saved;
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Serie> findByNameAndPagination(String name, int first, int pageSize) {
+		return em.createNamedQuery(Serie.FIND_BY_NAME).setParameter("serieName", name).setFirstResult(first).setMaxResults(pageSize).getResultList();
+	}
+
 }

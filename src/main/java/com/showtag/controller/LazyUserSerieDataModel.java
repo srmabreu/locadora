@@ -1,6 +1,7 @@
 package com.showtag.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.showtag.model.UserSerie;
 import com.showtag.service.UserSerieService;
@@ -21,7 +22,7 @@ public class LazyUserSerieDataModel extends AbstractLazyDataModel<UserSerie> {
 	}
 
 	@Override
-	public List<UserSerie> search() {
+	public List<UserSerie> search(int first, int pageSize, Map<String, String> filters) {
 		return userSerieService.findSerieByUser(userId);
 	}
 	

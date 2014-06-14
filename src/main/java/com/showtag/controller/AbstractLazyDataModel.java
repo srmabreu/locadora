@@ -13,7 +13,7 @@ public abstract class AbstractLazyDataModel<T> extends LazyDataModel<T> {
 	@Override
 	public List<T> load(int first, int pageSize, String sortField,
 			SortOrder sortOrder, Map<String, String> filters) {
-		List<T> list = search();
+		List<T> list = search(first, pageSize, filters);
 		setWrappedData(list);
 		setRowCount(list.size());
 		return list;
@@ -28,7 +28,7 @@ public abstract class AbstractLazyDataModel<T> extends LazyDataModel<T> {
         }
 	}
 	
-	public abstract List<T> search();
+	public abstract List<T> search(int first, int pageSize, Map<String, String> filters);
 
 
 }
