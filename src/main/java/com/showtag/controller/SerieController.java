@@ -40,6 +40,10 @@ public class SerieController extends AbstractController {
 		addInfoMessage("Cadastro realizado com sucesso!");
 		return "search.xhtml?faces-redirect=true";
 	}
+	
+	public void remove(Serie serie) {
+		serieService.remove(serie);
+	}
 
 	public Serie getSerie() {
 		return serie;

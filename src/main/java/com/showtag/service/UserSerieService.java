@@ -9,5 +9,7 @@ public interface UserSerieService {
 	void save(UserSerie userSerie);
 	
 	List<UserSerie> findSerieByUser(Integer userId);
+	
+	void remove(UserSerie userSerie);
 
 }

@@ -38,4 +38,9 @@ public class SerieServiceImpl extends AbstractService<Serie> implements SerieSer
 		return em.createNamedQuery(Serie.FIND_BY_NAME).setParameter("serieName", name).setFirstResult(first).setMaxResults(pageSize).getResultList();
 	}
 
+	@Override
+	public void remove(Serie serie) {
+		em.remove(em.merge(serie));
+	}
+
 }

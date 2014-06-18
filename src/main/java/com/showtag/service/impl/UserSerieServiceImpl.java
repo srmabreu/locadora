@@ -22,4 +22,9 @@ public class UserSerieServiceImpl extends AbstractService<UserSerie> implements 
 		return em.createNamedQuery(UserSerie.FIND_SERIE_BY_USER).setParameter("userId", userId).getResultList();
 	}
 
+	@Override
+	public void remove(UserSerie userSerie) {
+		em.remove(em.merge(userSerie));
+	}
+
 }

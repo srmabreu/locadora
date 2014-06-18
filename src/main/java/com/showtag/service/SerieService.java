@@ -10,4 +10,5 @@ public interface SerieService {
 	Serie findById(Integer id);
 	List<Serie> findByNameAndPagination(String name, int first, int pageSize);
 	Serie save(Serie serie);
+	void remove(Serie serie);
 }

@@ -53,6 +53,10 @@ public class UserSerieController extends AbstractController {
 		setUserSerie(new UserSerie());
 	}
 	
+	public void remove(UserSerie userSerie) {
+		userSerieService.remove(userSerie);
+	}
+	
 	public UserSerie getUserSerie() {
 		return userSerie;
 	}
