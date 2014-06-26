@@ -14,9 +14,11 @@ public class SerieController extends AbstractController {
 
 	private static final long serialVersionUID = 1L;
 	
-	Serie serie = new Serie();
+	private Serie serie;
 	
-	LazySerieDataModel lazyModel;
+	private LazySerieDataModel lazyModel;
+	
+	private String id;
 	
 	@ManagedProperty(value = "#{serieService}")
 	private SerieService serieService;
@@ -31,7 +33,13 @@ public class SerieController extends AbstractController {
 	}
 	
 	public void init() {
-		
+		if (getId() != null && !getId().equals("")) {
+			serie = serieService.findById(Integer.valueOf(getId()));
+		}
+	}
+	
+	public String editRedirect(Integer id) {
+		return "create.xhtml?faces-redirect=true&id="+id;
 	}
 	
 	public String save() {
@@ -67,6 +75,14 @@ public class SerieController extends AbstractController {
 
 	public void setSerieService(SerieService serieService) {
 		this.serieService = serieService;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

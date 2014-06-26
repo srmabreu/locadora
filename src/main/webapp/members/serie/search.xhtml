@@ -5,33 +5,28 @@
 		xmlns:p="http://primefaces.org/ui"
 		xmlns:f="http://java.sun.com/jsf/core">
 		
-<head/>
-<body>
-	<ui:composition template="/templates/main.xhtml">
-		<ui:param name="isMember" value="true" />
-		<ui:define name="title">Séries</ui:define>
-		<ui:define name="content">
-			<p:dataTable id="serieTable" var="s" value="#{serieController.lazyModel}" paginator="true" paginatorPosition="bottom" rows="10" lazy="true" 
-				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				currentPageReportTemplate="{startRecord} de {totalPages}">
-				<p:column headerText="Série">  
-		            <h:outputText value="#{s.name}" />  
-		        </p:column>
-		        <p:column width="20%">
-					<p:commandButton icon="ui-icon-pencil" action="create.xhtml" style="margin-right:10px">
-						<f:param name="id" value="#{s.id}" />
-					</p:commandButton>
-					<p:commandButton icon="ui-icon-trash" actionListener="#{serieController.remove(s)}" update="serieTable" >
-						<p:confirm header="Alerta" message="Deseja realmente deletar essa série?" icon="ui-icon-alert"/>
-					</p:commandButton>
-					<p:confirmDialog global="true">
-						<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-						<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-					</p:confirmDialog>
-		        </p:column>
-			</p:dataTable>
-		</ui:define>
-	</ui:composition>
-</body>
+<ui:composition template="/templates/main.xhtml">
+	<ui:param name="isMember" value="true" />
+	<ui:define name="title">Série</ui:define>
+	<ui:define name="content">
+		<p:dataTable id="serieTable" var="s" value="#{serieController.lazyModel}" paginator="true" paginatorPosition="bottom" rows="10" lazy="true" 
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			currentPageReportTemplate="{startRecord} de {totalPages}">
+			<p:column headerText="Série">  
+	            <h:outputText value="#{s.name}" />  
+	        </p:column>
+	        <p:column width="20%">
+				<p:commandButton icon="ui-icon-pencil" action="#{serieController.editRedirect(s.id)}" style="margin-right:10px" />
+				<p:commandButton icon="ui-icon-trash" actionListener="#{serieController.remove(s)}" update="serieTable" >
+					<p:confirm header="Alerta" message="Deseja realmente deletar essa série?" icon="ui-icon-alert"/>
+				</p:commandButton>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+				</p:confirmDialog>
+	        </p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>
 		
 </html>
