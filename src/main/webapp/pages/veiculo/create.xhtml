@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"  
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core">
+		
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="title">Veículo</ui:define>
+	<ui:define name="content">
+		<f:metadata>
+           	<f:viewParam name="id" value="#{veiculoController.id}" />
+           	<f:event type="preRenderView" listener="#{veiculoController.init()}" />
+        </f:metadata>
+        <div class="page-header" style="text-align: left">
+        	<h1>Cadastro de Veículo</h1>
+       	</div>
+		<h:form id="createForm">
+			<p:messages showDetail="true" showSummary="false" autoUpdate="true"/>
+			<p:panelGrid styleClass="veiculoPanelGrid no-border" style="width:500px;">
+				<p:row>
+					<p:column style="text-align:right">
+						<p:outputLabel value="Modelo:" for="modelo" />
+					</p:column>
+					<p:column>
+						<p:inputText id="modelo" value="#{veiculoController.veiculo.modelo}" required="true"/>
+					</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column style="text-align:right">
+						<p:outputLabel value="Marca:" for="marca" />
+					</p:column>
+					<p:column>
+						<p:inputText id="marca" value="#{veiculoController.veiculo.marca}" required="true"/>
+					</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column style="text-align:right">
+						<p:outputLabel value="Ano:" for="ano" />
+					</p:column>
+					<p:column>
+						<p:inputText id="ano" value="#{veiculoController.veiculo.ano}" maxlength="4" required="true" converterMessage="O ano deve estar no formato yyyy.">
+							<f:validator validatorId="yearValidator" />
+						</p:inputText>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<h:panelGroup style="display:block; margin-top:50px; padding-right: 345px">
+				<p:commandLink value="Voltar" action="search.xhtml?faces-redirect=true" style="margin-right: 10px" process="@this"/>
+				<p:commandButton value="Salvar" action="#{veiculoController.save}" ajax="false"/>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+</ui:composition>
+		
+</html>

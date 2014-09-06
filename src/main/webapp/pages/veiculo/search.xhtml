@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"  
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core">
+		
+<ui:composition template="/templates/main.xhtml">
+	<ui:param name="isMember" value="true" />
+	<ui:define name="title">Veículo</ui:define>
+	<ui:define name="content">
+		<h:form id="searchForm">
+			<p:messages showDetail="true" showSummary="false" autoUpdate="true"/>
+			<div style="float: left; margin-bottom: 20px; display: inline">
+				<h:button value="Adicionar Veículo" styleClass="btn btn-success" outcome="create.xhtml?faces-redirect=true" />
+			</div>
+			<div style="clear:both" />
+			<p:dataTable id="veiculoTable" var="v" value="#{veiculoController.lazyModel}" paginator="true" paginatorPosition="bottom" rows="10" lazy="true" 
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				emptyMessage="Nenhum registro encontrado"
+				currentPageReportTemplate="{currentPage} de {totalPages}">
+				<p:column headerText="id" sortBy="#{v.id}">  
+		            <h:outputText value="#{v.id}" />  
+		        </p:column>
+				<p:column headerText="Modelo" sortBy="#{v.modelo}">  
+		            <h:outputText value="#{v.modelo}" />  
+		        </p:column>
+		        <p:column headerText="Marca" sortBy="#{v.marca}">  
+		            <h:outputText value="#{v.marca}" />  
+		        </p:column>
+		        <p:column headerText="Ano" sortBy="#{v.ano}">  
+		            <h:outputText value="#{v.ano}" />  
+		        </p:column>
+		        <p:column width="20%">
+					<p:commandButton icon="ui-icon-pencil" action="#{veiculoController.editRedirect(v.id)}" style="margin-right:10px" ajax="false" />
+					<p:commandButton icon="ui-icon-trash" actionListener="#{veiculoController.remove(v)}" update="veiculoTable" >
+						<p:confirm header="Alerta" message="Deseja realmente deletar esse veículo?" icon="ui-icon-alert"/>
+					</p:commandButton>
+					<p:confirmDialog global="true">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+					</p:confirmDialog>
+		        </p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+		
+</html>

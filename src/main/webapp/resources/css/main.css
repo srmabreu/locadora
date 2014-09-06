@@ -125,6 +125,14 @@ table.no-border .ui-widget-content {
 	border:none;	
 }
 
+.veiculoPanelGrid {
+	width:500px;
+}
+
+.veiculoPanelGrid tr, .veiculoPanelGrid td {
+    border: none;
+}
+
 /** modificações primefaces **/
 
 .ui-panelgrid td {
