@@ -1,11 +1,15 @@
 package com.locadora.service;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+import org.primefaces.model.SortOrder;
+
+import com.locadora.controller.LazySorter;
 import com.locadora.model.Veiculo;
 import com.locadora.model.Veiculos;
 
@@ -30,8 +34,14 @@ public class VeiculoService implements Serializable {
 	 *            Quantidade de registros na pagina
 	 * @return Lista de veículos paginada
 	 */
-	public List<Veiculo> getVeiculosWithPagination(int first, int pageSize) {
+	public List<Veiculo> getVeiculosWithPagination(int first, int pageSize,
+			String sortField, SortOrder sortOrder) {
 		List<Veiculo> veiculos = Veiculos.getInstance().getVeiculos();
+		
+		if (sortField != null) {
+			Collections.sort(veiculos, new LazySorter(sortField, sortOrder));
+		}
+		
 		Integer tamanho = veiculos.size();
 		if (tamanho > pageSize) {
 			try {
@@ -65,7 +75,8 @@ public class VeiculoService implements Serializable {
 	 * uma busca pelo veículo e realiza a alteração, caso contrário, incrementa
 	 * o contador do id e insere um novo veículo na lista
 	 * 
-	 * @param veiculo que será adicionado na lista ou editado
+	 * @param veiculo
+	 *            que será adicionado na lista ou editado
 	 */
 	public void save(Veiculo veiculo) {
 		List<Veiculo> veiculos = Veiculos.getInstance().getVeiculos();
@@ -87,7 +98,8 @@ public class VeiculoService implements Serializable {
 	/**
 	 * Remove veículo da lista
 	 * 
-	 * @param veiculo que será removido
+	 * @param veiculo
+	 *            que será removido
 	 */
 	public void remove(Veiculo veiculo) {
 		List<Veiculo> veiculos = Veiculos.getInstance().getVeiculos();

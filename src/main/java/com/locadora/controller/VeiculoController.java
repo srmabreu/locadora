@@ -13,10 +13,10 @@ import com.locadora.model.Veiculo;
 import com.locadora.service.VeiculoService;
 
 /**
- * Classe bean que controla as paginas para listar e cadastrar veiculos. Esta
- * sendo utilizado ViewScoped para que sempre que mudar de pagina os dados dessa
- * classe sejam resetados e não fiquem na sessão enquanto o usuário estiver
- * utilizando o sistema.
+ * Classe bean que controla as paginas jsf para listar e cadastrar veiculos.
+ * Esta sendo utilizado ViewScoped para sempre que mudar de pagina os dados
+ * dessa classe sejam reiniciados e não fiquem na sessão enquanto o usuário
+ * estiver utilizando o sistema.
  * 
  * @author Sérgio Abreu <srmabreu@gmail.com>
  */
@@ -77,6 +77,9 @@ public class VeiculoController implements Serializable {
 		veiculoService.save(veiculo);
 		veiculo = new Veiculo();
 		addInfoMessage("Cadastro realizado com sucesso!");
+		// keep messages foi setado com o valor true para permitir utilizar
+		// faces-redirect=true na url, senão a mensagem acima não seria exibida
+		// na tela
 		FacesContext.getCurrentInstance().getExternalContext().getFlash()
 				.setKeepMessages(true);
 		return "search.xhtml?faces-redirect=true";

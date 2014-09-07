@@ -7,7 +7,7 @@ import org.primefaces.model.SortOrder;
 import com.locadora.model.Veiculo;
 
 /**
- * Classe que implementa comparator para que seja possível fazer a ordenação de
+ * Classe que implementa Comparator para que seja possível fazer a ordenação de
  * todos os campos no data table com veículos cadastrados
  * 
  * @author Sérgio Abreu <srmabreu@gmail.com>
@@ -24,7 +24,7 @@ public class LazySorter implements Comparator<Veiculo> {
 	}
 
 	/**
-	 * Método utiliza reflection para ordenar por todos os campos do data table,
+	 * Método utiliza reflection para ordenar por todos as colunas do data table,
 	 * dessa forma não é necessário implementar a ordenação de cada campo
 	 * individualmente. Todos os atributos da classe Veiculo estão com
 	 * modificador public para possibilitar o uso de reflection.

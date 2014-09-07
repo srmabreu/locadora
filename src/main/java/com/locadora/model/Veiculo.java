@@ -7,8 +7,8 @@ import java.io.Serializable;
  * aplicação seja executada em um ambiente com compartilhamento de sessão. Essa
  * classe implementa os métodos hashCode e equals para que seja possível
  * diferenciar os objetos quando armazenados em uma lista ou set. Todos os
- * atributos dessa estão com modificador public para possibilitar o
- * uso de reflection na classe de ordenação.
+ * atributos dessa classe estão com modificador public para possibilitar o
+ * uso de reflection na classe de ordenação LazySorter.
  * 
  * @author Sérgio Abreu <srmabreu@gmail.com>
  */

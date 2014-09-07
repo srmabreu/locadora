@@ -1,6 +1,5 @@
 package com.locadora.controller;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -28,18 +27,14 @@ public class LazyVeiculoDataModel extends LazyDataModel<Veiculo> {
 	}
 
 	/**
-	 * Realiza a busca com paginação, ordena e informa o total de registros para
+	 * Realiza a busca com paginação e informa o total de registros para
 	 * calculo da paginação.
 	 */
 	@Override
 	public List<Veiculo> load(int first, int pageSize, String sortField,
 			SortOrder sortOrder, Map<String, String> filters) {
 		List<Veiculo> lista = veiculoService.getVeiculosWithPagination(first,
-				pageSize);
-
-		if (sortField != null) {
-			Collections.sort(lista, new LazySorter(sortField, sortOrder));
-		}
+				pageSize, sortField, sortOrder);
 
 		setRowCount(Veiculos.getInstance().getVeiculos().size());
 		return lista;

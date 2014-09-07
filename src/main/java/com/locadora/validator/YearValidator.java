@@ -17,12 +17,12 @@ public class YearValidator implements Validator {
 
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {  
         if(value.toString().length() != 4) {  
-        	throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de validação", value + " não é um ano valido. O ano deve estar no formato yyyy"));
+        	throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de validação", value + " não é um ano valido. O ano deve estar no formato yyyy."));
         }  
         try {
         	Integer.parseInt(value.toString());
         } catch (NumberFormatException e) {
-        	throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de validação", value + " não é um ano valido. O ano deve estar no formato yyyy"));
+        	throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de validação", value + " não é um ano valido. O ano deve estar no formato yyyy."));
         }
     }
 
