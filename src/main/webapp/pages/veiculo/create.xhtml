@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<ui:composition template="/templates/main.xhtml"
+		xmlns="http://www.w3.org/1999/xhtml" 
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"  
 		xmlns:p="http://primefaces.org/ui"
 		xmlns:f="http://java.sun.com/jsf/core">
-		
-<ui:composition template="/templates/main.xhtml">
 	<ui:define name="title">Veículo</ui:define>
 	<ui:define name="content">
 		<f:metadata>
@@ -47,12 +45,10 @@
 					</p:column>
 				</p:row>
 			</p:panelGrid>
-			<h:panelGroup style="display:block; margin-top:50px; padding-right: 345px">
+			<h:panelGroup class="botaoCreate">
 				<p:commandLink value="Voltar" action="search.xhtml?faces-redirect=true" style="margin-right: 10px" process="@this"/>
 				<p:commandButton value="Salvar" action="#{veiculoController.save}" ajax="false"/>
 			</h:panelGroup>
 		</h:form>
 	</ui:define>
 </ui:composition>
-		
-</html>

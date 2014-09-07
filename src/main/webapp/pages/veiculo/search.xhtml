@@ -1,24 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<ui:composition template="/templates/main.xhtml"
+		xmlns="http://www.w3.org/1999/xhtml" 
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"  
 		xmlns:p="http://primefaces.org/ui"
 		xmlns:f="http://java.sun.com/jsf/core">
-		
-<ui:composition template="/templates/main.xhtml">
-	<ui:param name="isMember" value="true" />
 	<ui:define name="title">Veículo</ui:define>
 	<ui:define name="content">
 		<h:form id="searchForm">
 			<p:messages showDetail="true" showSummary="false" autoUpdate="true"/>
-			<div style="float: left; margin-bottom: 20px; display: inline">
+			<div class="botaoAdicionar">
 				<h:button value="Adicionar Veículo" styleClass="btn btn-success" outcome="create.xhtml?faces-redirect=true" />
 			</div>
-			<div style="clear:both" />
+			<div class="clear" />
 			<p:dataTable id="veiculoTable" var="v" value="#{veiculoController.lazyModel}" paginator="true" paginatorPosition="bottom" rows="10" lazy="true" 
 				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				emptyMessage="Nenhum registro encontrado"
-				currentPageReportTemplate="{currentPage} de {totalPages}">
+				emptyMessage="Nenhum registro encontrado" currentPageReportTemplate="{currentPage} de {totalPages}">
 				<p:column headerText="id" sortBy="#{v.id}">  
 		            <h:outputText value="#{v.id}" />  
 		        </p:column>
@@ -46,4 +42,3 @@
 	</ui:define>
 </ui:composition>
 		
-</html>

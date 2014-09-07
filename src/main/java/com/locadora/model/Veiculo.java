@@ -3,12 +3,14 @@ package com.locadora.model;
 import java.io.Serializable;
 
 /**
- * Classe que representa a entidade veiculo, a classe implementa Serializable
- * para caso a aplicação seja executada em um ambiente com compartilhamento de
- * sessão. Essa classe implementa os métodos hashCode e equals para que seja
- * possível diferenciar os objetos caso sejam armazenados em uma lista ou set.
+ * Classe que representa o veiculo, a classe implementa Serializable para caso a
+ * aplicação seja executada em um ambiente com compartilhamento de sessão. Essa
+ * classe implementa os métodos hashCode e equals para que seja possível
+ * diferenciar os objetos quando armazenados em uma lista ou set. Todos os
+ * atributos dessa estão com modificador public para possibilitar o
+ * uso de reflection na classe de ordenação.
  * 
- * @author Sérgio Abreu
+ * @author Sérgio Abreu <srmabreu@gmail.com>
  */
 public class Veiculo implements Serializable {
 
